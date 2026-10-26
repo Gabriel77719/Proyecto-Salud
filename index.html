@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>Salud para Mayores</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ACCESO -->
+  <section id="pantallaAcceso" class="acceso">
+    <div class="tarjeta acceso-caja">
+      <div class="logo">❤️</div>
+      <h1>Salud para Mayores</h1>
+      <p>Bienvenido a tu espacio de salud</p>
+
+      <div class="pestanas">
+        <button id="tabLogin" class="activo"
+                type="button">Ingresar</button>
+        <button id="tabRegistro"
+                type="button">Crear cuenta</button>
+      </div>
+
+      <form id="formLogin">
+        <label for="loginCorreo">Correo ficticio</label>
+        <input type="email" id="loginCorreo"
+               placeholder="usuario@ejemplo.test" required>
+
+        <label for="loginClave">Contraseña de prueba</label>
+        <input type="password" id="loginClave" required>
+
+        <button class="principal" type="submit">
+          Iniciar sesión
+        </button>
+      </form>
+
+      <form id="formRegistro" hidden>
+        <label for="registroNombre">Nombre completo</label>
+        <input type="text" id="registroNombre" required>
+
+        <label for="registroCorreo">Correo ficticio</label>
+        <input type="email" id="registroCorreo"
+               placeholder="persona@ejemplo.test" required>
+
+        <label for="registroClave">Contraseña de prueba</label>
+        <input type="password" id="registroClave"
+               minlength="6" required>
+
+        <button class="principal" type="submit">
+          Enviar solicitud
+        </button>
+      </form>
+
+      <p class="nota">
+        Demostración local. No uses contraseñas reales.
+      </p>
+    </div>
+  </section>
+
+  <!-- APLICACIÓN -->
+  <div id="aplicacion" hidden>
+    <header>
+      <div>
+        <h1>❤️ Salud para Mayores</h1>
+        <p>Tu salud, tu tranquilidad</p>
+      </div>
+      <div class="perfil">
+        <strong id="nombreUsuario"></strong>
+        <span id="rolUsuario"></span>
+        <button id="cerrarSesion" class="secundario">
+          Cerrar sesión
+        </button>
+      </div>
+    </header>
+
+    <main class="contenedor">
+      <nav class="menu">
+        <a href="#presion">🩺 Presión</a>
+        <a href="#medicamentos">💊 Medicamentos</a>
+        <a href="#chat">💬 Chat</a>
+        <a href="#administracion" id="enlaceAdmin" hidden>
+          👑 Administración
+        </a>
+      </nav>
+
+      <section class="tarjeta">
+        <h2>Bienvenido, <span id="saludoNombre"></span></h2>
+        <p>
+          Controla tus registros y organiza tus
+          medicamentos desde un solo lugar.
+        </p>
+      </section>
+
+      <!-- PRESIÓN -->
+      <section id="presion" class="tarjeta">
+        <h2>🩺 Registro de presión arterial</h2>
+        <p>Selecciona una pantalla y utiliza el teclado.</p>
+
+        <div class="pantallas">
+          <div class="pantalla activa" data-campo="sys">
+            <strong>SYS</strong>
+            <input id="sys" readonly placeholder="---">
+            <small>Sistólica</small>
+          </div>
+
+          <div class="pantalla" data-campo="dia">
+            <strong>DIA</strong>
+            <input id="dia" readonly placeholder="---">
+            <small>Diastólica</small>
+          </div>
+
+          <div class="pantalla" data-campo="pulse">
+            <strong>PULSE</strong>
+            <input id="pulse" readonly placeholder="---">
+            <small>Pulso</small>
+          </div>
+        </div>
+
+        <p id="campoActivo" class="nota">
+          Seleccionado: SYS
+        </p>
+
+        <div class="teclado">
+          <button data-num="1">1</button>
+          <button data-num="2">2</button>
+          <button data-num="3">3</button>
+          <button data-num="4">4</button>
+          <button data-num="5">5</button>
+          <button data-num="6">6</button>
+          <button data-num="7">7</button>
+          <button data-num="8">8</button>
+          <button data-num="9">9</button>
+          <button id="borrarNumero">⌫</button>
+          <button data-num="0">0</button>
+          <button id="limpiarNumero">C</button>
+        </div>
+
+        <button id="guardarPresion" class="principal">
+          Guardar registro
+        </button>
+
+        <h3>Historial de presión</h3>
+        <div class="tabla-contenedor">
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>SYS</th>
+                <th>DIA</th>
+                <th>PULSE</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="tablaPresion"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MEDICAMENTOS -->
+      <section id="medicamentos" class="tarjeta">
+        <h2>💊 Medicamentos</h2>
+        <form id="formMedicamento">
+          <label for="medNombre">Medicamento</label>
+          <input id="medNombre" type="text"
+                 placeholder="Nombre del medicamento" required>
+
+          <label for="medHora">Horario</label>
+          <input id="medHora" type="time" required>
+
+          <button class="principal" type="submit">
+            Agregar recordatorio
+          </button>
+        </form>
+
+        <h3>Recordatorios programados</h3>
+        <div id="listaMedicamentos"></div>
+        <p class="nota">
+          Los avisos se muestran mientras la página
+          permanezca abierta.
+        </p>
+      </section>
+
+      <!-- CHAT -->
+      <section id="chat" class="tarjeta">
+        <h2>💬 Chat familiar de demostración</h2>
+        <p class="nota">
+          Los mensajes se comparten entre usuarios
+          ficticios de este mismo navegador.
+        </p>
+
+        <div id="listaMensajes" class="mensajes"></div>
+
+        <form id="formChat">
+          <label for="textoMensaje">Mensaje</label>
+          <textarea id="textoMensaje" rows="3"
+                    placeholder="Escribe un mensaje..."></textarea>
+
+          <label for="fotoMensaje">Fotografía</label>
+          <input type="file" id="fotoMensaje"
+                 accept="image/*">
+
+          <button class="principal" type="submit">
+            Enviar mensaje
+          </button>
+        </form>
+      </section>
+
+      <!-- ADMINISTRACIÓN -->
+      <section id="administracion" class="tarjeta" hidden>
+        <h2>👑 Panel del administrador</h2>
+        <h3>Solicitudes pendientes</h3>
+        <div id="listaSolicitudes"></div>
+
+        <h3>Usuarios autorizados</h3>
+        <div id="listaAutorizados"></div>
+      </section>
+    </main>
+
+    <footer>
+      Salud para Mayores © 2026 · Prototipo
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
